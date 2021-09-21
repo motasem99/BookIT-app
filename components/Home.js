@@ -1,7 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
+import { connect } from 'react-redux';
 
-function Home() {
+const Home = ({ rooms }) => {
+  console.log(rooms);
+
   return (
     <section id='rooms' className='container mt-5'>
       <h2 className='mb-3 ml-2 stays-heading'>Stays in New York</h2>
@@ -133,6 +135,10 @@ function Home() {
       </div>
     </section>
   );
-}
+};
 
-export default Home;
+const mapStateToProps = (state) => {
+  return { rooms: state.allRooms.rooms };
+};
+
+export default connect(mapStateToProps)(Home);
