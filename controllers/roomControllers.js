@@ -6,13 +6,26 @@ import APIFeatures from '../utils/apiFeatures';
 
 // Get All rooms => /api/rooms
 const allRooms = catchAsyncErrors(async (req, res) => {
+  const resPerPage = 4;
+
+  const roomsCount = await Room.countDocuments();
+
   const apiFeatures = new APIFeatures(Room.find(), req.query).search().filter();
 
-  const rooms = await apiFeatures.query;
+  let rooms = await apiFeatures.query;
+  let filteredRoomsCount = rooms.length;
+
+  const newRooms = new APIFeatures(Room.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resPerPage);
+  rooms = await newRooms.query;
 
   res.status(200).json({
     success: true,
-    count: rooms.length,
+    roomsCount,
+    resPerPage,
+    filteredRoomsCount,
     rooms,
   });
 });
