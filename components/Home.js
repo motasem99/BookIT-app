@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import RoomItem from './room/RoomItem';
+import { toast } from 'react-toastify';
 
-const Home = ({ rooms }) => {
+const Home = ({ rooms, error }) => {
+  useEffect(() => {
+    toast.error(error);
+  }, []);
+
   return (
     <section id='rooms' className='container mt-5'>
       <h2 className='mb-3 ml-2 stays-heading'>Stays in New York</h2>
@@ -15,7 +20,7 @@ const Home = ({ rooms }) => {
         {rooms && rooms.length === 0 ? (
           <div className='alert alert-danger'>No Rooms Found.</div>
         ) : (
-          rooms.map((room) => <RoomItem key={room.id} room={room} />)
+          rooms && rooms.map((room) => <RoomItem key={room.id} room={room} />)
         )}
       </div>
     </section>
@@ -23,7 +28,7 @@ const Home = ({ rooms }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { rooms: state.allRooms.rooms };
+  return { rooms: state.allRooms.rooms, error: state.allRooms.error };
 };
 
 export default connect(mapStateToProps)(Home);
