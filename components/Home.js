@@ -3,9 +3,17 @@ import { connect } from 'react-redux';
 import RoomItem from './room/RoomItem';
 import { toast } from 'react-toastify';
 
+import { useDispatch } from 'react-redux';
+import { clearErrors } from '../redux/actions/roomActions';
+
 const Home = ({ rooms, error }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    toast.error(error);
+    if (error) {
+      toast.error(error);
+      dispatch(clearErrors());
+    }
   }, []);
 
   return (
