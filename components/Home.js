@@ -45,7 +45,7 @@ const Home = ({ rooms, error, resPerPage, roomsCount, filteredRoomsCount }) => {
         </Link>
         <div className='row'>
           {rooms && rooms.length === 0 ? (
-            <div className='alert alert-danger'>No Rooms Found.</div>
+            <div className='alert alert-danger mt-5 w-100'>No Rooms Found.</div>
           ) : (
             rooms && rooms.map((room) => <RoomItem key={room.id} room={room} />)
           )}
