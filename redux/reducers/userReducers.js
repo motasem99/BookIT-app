@@ -43,7 +43,7 @@ export const authReducers = (state = { user: null }, action) => {
 
     case LOAD_USER_FAIL:
       return {
-        loading: true,
+        loading: false,
         isAuthenticated: false,
         error: action.payload,
       };
