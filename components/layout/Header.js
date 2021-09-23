@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { loadUser } from '../../redux/actions/userAction';
 
-function Header() {
+const Header = ({ user, loading }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
+
   return (
     <nav className='navbar row justify-content-center sticky-top'>
       <div className='container'>
@@ -27,6 +36,11 @@ function Header() {
       </div>
     </nav>
   );
-}
+};
 
-export default Header;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps)(Header);
