@@ -27,7 +27,7 @@ export const registerUser = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post('api/auth/register', userData, config);
+    const { data } = await axios.post('/api/auth/register', userData, config);
 
     dispatch({
       type: REGISTER_USER_SUCCESS,
@@ -48,7 +48,7 @@ export const loadUser = (userData) => async (dispatch) => {
       type: LOAD_USER_REQUEST,
     });
 
-    const { data } = await axios.get('api/me');
+    const { data } = await axios.get('/api/me');
 
     dispatch({
       type: LOAD_USER_SUCCESS,
@@ -64,7 +64,7 @@ export const loadUser = (userData) => async (dispatch) => {
 
 // Update Profile
 
-export const UpdateProfile = (userData) => async (dispatch) => {
+export const updateProfile = (userData) => async (dispatch) => {
   try {
     dispatch({
       type: UPDATE_PROFILE_REQUEST,
@@ -76,7 +76,7 @@ export const UpdateProfile = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.put('api/me/update', userData, config);
+    const { data } = await axios.put('/api/me/update', userData, config);
 
     dispatch({
       type: UPDATE_PROFILE_SUCCESS,
