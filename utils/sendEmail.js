@@ -17,7 +17,7 @@ const sendEmail = async (options) => {
     text: options.message,
   };
 
-  await transporter.sendEmail(message);
+  await transporter.sendMail(message);
 };
 
 export default sendEmail;
