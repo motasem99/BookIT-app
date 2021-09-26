@@ -5,6 +5,7 @@ import ErrorHandler from '../utils/errorHandler';
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 import sendEmail from '../utils/sendEmail';
 import absoluteUrl from 'next-absolute-url';
+import crypto from 'crypto';
 
 // Setting up cloudinary config
 
