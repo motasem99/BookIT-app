@@ -4,6 +4,7 @@ import {
   authReducers,
   userReducers,
   forgotPasswordReducers,
+  loadedUserReducers,
 } from './userReducers';
 
 const reducer = combineReducers({
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   roomDetails: roomDetailsReducers,
   auth: authReducers,
   user: userReducers,
+  loadedUser: loadedUserReducers,
   forgotPassword: forgotPasswordReducers,
 });
 

@@ -89,8 +89,8 @@ const Header = ({ user, loading }) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  loading: state.auth.loading,
+  user: state.loadedUser.user,
+  loading: state.loadedUser.loading,
 });
 
 export default connect(mapStateToProps)(Header);
