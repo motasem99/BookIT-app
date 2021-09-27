@@ -83,13 +83,21 @@ const checkBookedDatesOfRoom = catchAsyncErrors(async (req, res) => {
     room: roomId,
   });
 
+  const timeDifference = moment().utcOffset() / 60;
+
   let bookedDates = [];
 
   bookings.forEach((booking) => {
-    const range = moment.range(
-      moment(booking.checkInDate),
-      moment(booking.checkOutDate)
+    const checkInDate = moment(booking.checkInDate).add(
+      timeDifference,
+      'hours'
     );
+    const checkOutDate = moment(booking.checkOutDate).add(
+      timeDifference,
+      'hours'
+    );
+
+    const range = moment.range(moment(checkInDate), moment(checkOutDate));
 
     const dates = Array.from(range.by('day'));
     bookedDates = bookedDates.concat(dates);
