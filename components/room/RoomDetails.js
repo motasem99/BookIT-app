@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { Carousel } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -12,12 +13,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import RoomFeatures from './RoomFeatures';
+import axios from 'axios';
 
 const RoomDetails = ({ room, error }) => {
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
+  const [daysOfStay, setDaysOfStay] = useState();
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const onChange = (dates) => {
     const [checkInDate, checkOutDate] = dates;
@@ -26,7 +30,38 @@ const RoomDetails = ({ room, error }) => {
     setCheckOutDate(checkOutDate);
 
     if (checkInDate && checkOutDate) {
-      console.log(checkInDate.toISOString(), checkOutDate.toISOString());
+      // Calculate days of stay
+      const days = Math.floor(
+        (new Date(checkOutDate) - new Date(checkInDate)) / 86400000 + 1
+      );
+      setDaysOfStay(days);
+    }
+  };
+
+  const newBookingHandler = async () => {
+    const bookingData = {
+      room: router.query.id,
+      checkInDate,
+      checkOutDate,
+      daysOfStay,
+      amountPaid: 90,
+      paymentInfo: {
+        id: 'STRIPE_PAYMENT_ID',
+        status: 'STRIPE_PAYMENT_STATUS',
+      },
+    };
+    try {
+      const config = {
+        headers: {
+          'content-type': 'application/json',
+        },
+      };
+
+      const { data } = await axios.post('/api/bookings', bookingData, config);
+
+      console.log(data);
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
@@ -100,7 +135,12 @@ const RoomDetails = ({ room, error }) => {
                 inline
               />
 
-              <button className='btn btn-block py-3 booking-btn'>Pay</button>
+              <button
+                className='btn btn-block py-3 booking-btn'
+                onClick={newBookingHandler}
+              >
+                Pay
+              </button>
             </div>
           </div>
         </div>
