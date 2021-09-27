@@ -51,7 +51,7 @@ const checkRoomBookingsAvailability = catchAsyncErrors(async (req, res) => {
       },
       {
         checkOutDate: {
-          $get: checkInDate,
+          $gte: checkInDate,
         },
       },
     ],

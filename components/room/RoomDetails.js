@@ -15,7 +15,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import RoomFeatures from './RoomFeatures';
 import axios from 'axios';
 
-const RoomDetails = ({ room, error }) => {
+import { checkBooking } from '../../redux/actions/bookingAction';
+import { CHECK_BOOKING_REQUEST } from '../../redux/constants/bookingConstants';
+
+const RoomDetails = ({ room, error, available, user, bookingLoading }) => {
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
   const [daysOfStay, setDaysOfStay] = useState();
@@ -35,8 +38,14 @@ const RoomDetails = ({ room, error }) => {
         (new Date(checkOutDate) - new Date(checkInDate)) / 86400000 + 1
       );
       setDaysOfStay(days);
+
+      dispatch(
+        checkBooking(id, checkInDate.toISOString(), checkOutDate.toISOString())
+      );
     }
   };
+
+  const { id } = router.query;
 
   const newBookingHandler = async () => {
     const bookingData = {
@@ -131,16 +140,37 @@ const RoomDetails = ({ room, error }) => {
                 onChange={onChange}
                 startDate={checkInDate}
                 endDate={checkOutDate}
+                minDate={new Date()}
                 selectsRange
                 inline
               />
 
-              <button
-                className='btn btn-block py-3 booking-btn'
-                onClick={newBookingHandler}
-              >
-                Pay
-              </button>
+              {available === true && (
+                <div className='alert alert-success my-3 font-weight-bold'>
+                  Room is available. Book now.
+                </div>
+              )}
+
+              {available === false && (
+                <div className='alert alert-danger my-3 font-weight-bold'>
+                  Room is not available. Try different dates.
+                </div>
+              )}
+
+              {available && !user && (
+                <div className='alert alert-danger my-3 font-weight-bold'>
+                  Login to book room.
+                </div>
+              )}
+
+              {available && user && (
+                <button
+                  className='btn btn-block py-3 booking-btn'
+                  onClick={newBookingHandler}
+                >
+                  Pay
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -174,7 +204,13 @@ const RoomDetails = ({ room, error }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { room: state.roomDetails.room, error: state.roomDetails.error };
+  return {
+    room: state.roomDetails.room,
+    error: state.roomDetails.error,
+    available: state.checkBooking.available,
+    bookingLoading: state.checkBooking.loading,
+    user: state.loadedUser.user,
+  };
 };
 
 export default connect(mapStateToProps)(RoomDetails);
