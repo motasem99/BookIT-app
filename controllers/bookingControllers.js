@@ -1,9 +1,11 @@
-import UseBooking from '../models/booking';
+import Booking from '../models/booking';
 
 import ErrorHandler from '../utils/errorHandler';
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
-import Booking from '../models/booking';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 
+const moment = extendMoment(Moment);
 // Create New Booking => /api/bookings
 
 const newBooking = catchAsyncErrors(async (req, res) => {
@@ -72,4 +74,31 @@ const checkRoomBookingsAvailability = catchAsyncErrors(async (req, res) => {
   });
 });
 
-export { newBooking, checkRoomBookingsAvailability };
+// Check booked dates of a room => /api/bookings/check_booked_dates
+
+const checkBookedDatesOfRoom = catchAsyncErrors(async (req, res) => {
+  const { roomId } = req.query;
+
+  const bookings = await Booking.find({
+    room: roomId,
+  });
+
+  let bookedDates = [];
+
+  bookings.forEach((booking) => {
+    const range = moment.range(
+      moment(booking.checkInDate),
+      moment(booking.checkOutDate)
+    );
+
+    const dates = Array.from(range.by('day'));
+    bookedDates = bookedDates.concat(dates);
+  });
+
+  res.status(200).json({
+    success: true,
+    bookedDates,
+  });
+});
+
+export { newBooking, checkRoomBookingsAvailability, checkBookedDatesOfRoom };
