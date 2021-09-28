@@ -55,7 +55,7 @@ const Header = ({ user, loading }) => {
                 className='dropdown-menu'
                 aria-labelledby='dropDownMenuButton'
               >
-                <Link href='/bokkings/me'>
+                <Link href='/bookings/me'>
                   <a className='dropdown-item'>My Bookings</a>
                 </Link>
 
