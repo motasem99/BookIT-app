@@ -68,8 +68,6 @@ export const myBookings = (authCookie, req) => async (dispatch) => {
 
     const { data } = await axios.get(`${origin}/api/bookings/me`, config);
 
-    console.log(data);
-
     dispatch({
       type: MY_BOOKINGS_SUCCESS,
       payload: data.bookings,
@@ -93,8 +91,6 @@ export const getBookingDetails = (authCookie, req, id) => async (dispatch) => {
     };
 
     const { data } = await axios.get(`${origin}/api/bookings/${id}`, config);
-
-    console.log(data);
 
     dispatch({
       type: BOOKING_DETAILS_SUCCESS,
