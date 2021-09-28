@@ -3,6 +3,8 @@ import {
   CHECK_BOOKING_SUCCESS,
   CHECK_BOOKING_FAIL,
   CHECK_BOOKING_RESET,
+  BOOKED_DATES_SUCCESS,
+  BOOKED_DATES_FAIL,
   CLEAR_ERRORS,
 } from '../constants/bookingConstants';
 
@@ -41,30 +43,18 @@ export const checkBookingReducer = (state = { available: null }, action) => {
       return state;
   }
 };
-
-// Load user reducer
-export const loadedUserReducers = (
-  state = { loading: true, user: null },
-  action
-) => {
+// Get all booked dates
+export const bookedDatesReducer = (state = { dates: [] }, action) => {
   switch (action.type) {
-    case LOAD_USER_REQUEST:
-      return {
-        loading: true,
-        isAuthenticated: false,
-      };
-
-    case LOAD_USER_SUCCESS:
+    case BOOKED_DATES_SUCCESS:
       return {
         loading: false,
-        success: true,
-        user: action.payload,
+        dates: action.payload,
       };
 
-    case LOAD_USER_FAIL:
+    case BOOKED_DATES_FAIL:
       return {
         loading: false,
-        isAuthenticated: false,
         error: action.payload,
       };
 
