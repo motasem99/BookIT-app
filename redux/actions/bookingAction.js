@@ -97,12 +97,12 @@ export const getBookingDetails = (authCookie, req, id) => async (dispatch) => {
     console.log(data);
 
     dispatch({
-      type: MY_BOOKINGS_SUCCESS,
+      type: BOOKING_DETAILS_SUCCESS,
       payload: data.booking,
     });
   } catch (error) {
     dispatch({
-      type: MY_BOOKINGS_FAIL,
+      type: BOOKING_DETAILS_FAIL,
       payload: error.response.data.message,
     });
   }
