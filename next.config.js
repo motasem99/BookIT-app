@@ -4,9 +4,9 @@ module.exports = {
     DB_LOCAL_URI: 'mongodb://localhost:27017/bookit',
 
     STRIPE_API_KEY:
-      'pk_test_51Jf0YsIZdnwzeUymHZyhBuSkmhuAiTpp9f8wryGoDbqULC7yBjEoj7uOZOdbcZo9oy6pE2VwxVnbePDXUJaXDoYV00DNMQTf4k',
+      'pk_test_51Jf1dTIA2mdD6zymhaM1DyTg6JhBNr7vTcVSHNNy199Ov3qYl1lSrxKoOHP3739bkFUceCSZWCbGwHWr4SDpuACC00XMB6KSWm',
     STRIPE_SECRET_KEY:
-      'sk_test_51Jf0YsIZdnwzeUymlpVKBemaAq3x5UZ5fSM4k2pUbi3izp8hqKoBuI0xMii5nzkfIqzFb93793YZUEmYxe4PIHLP00U08fuai4',
+      'sk_test_51Jf1dTIA2mdD6zym0Y15LnmCHTuqBkLd4MxYBDu9cE9E89bI0wQdVQ74ujQS7Q7pwh195PlcVwTKzTYMCbsf5pUv007ycjMI0c',
 
     CLOUDINARY_CLOUD_NAME: 'bookit-app-mutasem',
     CLOUDINARY_API_KEY: '177456338558743',
