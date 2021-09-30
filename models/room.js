@@ -88,12 +88,12 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      ratings: {
+      rating: {
         type: Number,
         required: true,
       },
       comment: {
-        type: Number,
+        type: String,
         required: true,
       },
     },

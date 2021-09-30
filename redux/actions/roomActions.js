@@ -72,6 +72,8 @@ export const newReview = (reviewData) => async (dispatch) => {
       },
     };
 
+    console.log(reviewData);
+
     const { data } = await axios.put(`/api/reviews`, reviewData, config);
 
     dispatch({
