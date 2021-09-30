@@ -2,12 +2,16 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useRouter } from 'next/router';
 
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
-import { newReview, clearErrors } from '../../redux/actions/roomActions';
+import {
+  newReview,
+  checkReviewAvailability,
+  clearErrors,
+} from '../../redux/actions/roomActions';
 import { NEW_REVIEW_RESET } from '../../redux/constants/roomConstants';
 
-const NewReview = ({ error, success }) => {
+const NewReview = ({ error, success, reviewAvailable }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -17,6 +21,9 @@ const NewReview = ({ error, success }) => {
   const { id } = router.query;
 
   useEffect(() => {
+    if (id !== undefined) {
+      dispatch(checkReviewAvailability(id));
+    }
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
@@ -25,7 +32,7 @@ const NewReview = ({ error, success }) => {
       toast.success('Review is posted');
       dispatch({ type: NEW_REVIEW_RESET });
     }
-  }, [dispatch, success, error]);
+  }, [dispatch, success, error, id]);
 
   const submitHandler = () => {
     const reviewData = {
@@ -77,17 +84,18 @@ const NewReview = ({ error, success }) => {
 
   return (
     <Fragment>
-      <button
-        id='review_btn'
-        type='button'
-        className='btn btn-primary mt-4 mb-5'
-        data-toggle='modal'
-        data-target='#ratingModal'
-        onClick={setUserRating}
-      >
-        Submit Your Review
-      </button>
-
+      {reviewAvailable && (
+        <button
+          id='review_btn'
+          type='button'
+          className='btn btn-primary mt-4 mb-5'
+          data-toggle='modal'
+          data-target='#ratingModal'
+          onClick={setUserRating}
+        >
+          Submit Your Review
+        </button>
+      )}
       <div
         className='modal fade'
         id='ratingModal'
@@ -159,6 +167,7 @@ const NewReview = ({ error, success }) => {
 const mapStateToProps = (state) => ({
   error: state.newReview.error,
   success: state.newReview.success,
+  reviewAvailable: state.checkReview.reviewAvailable,
 });
 
 export default connect(mapStateToProps)(NewReview);
