@@ -111,8 +111,8 @@ const deleteRoom = async (req, res) => {
   }
 };
 
-// Create new review  => /api/review
-const createRoomReview = async (req, res) => {
+// Create new review  => /api/reviews
+const createRoomReview = catchAsyncErrors(async (req, res) => {
   const { rating, comment, roomId } = req.body;
 
   const review = {
@@ -146,10 +146,10 @@ const createRoomReview = async (req, res) => {
 
   await room.save({ validateBeforeSave: false });
 
-  res.status(400).json({
-    success: false,
+  res.status(200).json({
+    success: true,
   });
-};
+});
 
 export {
   allRooms,

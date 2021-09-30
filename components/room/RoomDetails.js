@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearErrors } from '../../redux/actions/roomActions';
 import { toast } from 'react-toastify';
+import NewReview from '../review/NewReview';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -220,6 +221,8 @@ const RoomDetails = ({
             </div>
           </div>
         </div>
+
+        <NewReview />
 
         <div className='reviews w-75'>
           <h3>Reviews:</h3>
