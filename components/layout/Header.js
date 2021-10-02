@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
@@ -55,6 +55,14 @@ const Header = ({ user, loading }) => {
                 className='dropdown-menu'
                 aria-labelledby='dropDownMenuButton'
               >
+                {user.role === 'admin' && (
+                  <Fragment>
+                    <Link href='/admin/rooms'>
+                      <a className='dropdown-item'>Rooms</a>
+                    </Link>
+                    <hr />
+                  </Fragment>
+                )}
                 <Link href='/bookings/me'>
                   <a className='dropdown-item'>My Bookings</a>
                 </Link>
