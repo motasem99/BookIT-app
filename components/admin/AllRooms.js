@@ -89,7 +89,14 @@ const AllRooms = ({ loading, error, rooms }) => {
         <Loader />
       ) : (
         <Fragment>
-          <h1 className='my-5'>{`${rooms && rooms.length} Rooms`}</h1>
+          <h1 className='my-5'>
+            {`${rooms && rooms.length} Rooms`}
+            <Link href='/admin/rooms/new'>
+              <a className='mt-0 btn text-white float-right new-room-btn'>
+                Create Room
+              </a>
+            </Link>
+          </h1>
           <MDBDataTable
             data={setRooms()}
             className='px-3'

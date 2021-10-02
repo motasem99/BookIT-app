@@ -32,16 +32,15 @@ const allRooms = catchAsyncErrors(async (req, res) => {
   });
 });
 
-// Create new room => /api/rooms
+// Create new room   =>   /api/rooms
 const newRoom = catchAsyncErrors(async (req, res) => {
   const images = req.body.images;
+
   let imagesLinks = [];
 
-  for (let i = 0; images.length; i++) {
+  for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
       folder: 'bookit/rooms',
-      width: '150',
-      crop: 'scale',
     });
 
     imagesLinks.push({
