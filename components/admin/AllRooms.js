@@ -8,9 +8,10 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearErrors } from '../../redux/actions/bookingAction';
 
-import { getAdminRooms } from '../../redux/actions/roomActions';
+import { getAdminRooms, deleteRoom } from '../../redux/actions/roomActions';
+import { DELETE_ROOM_RESET } from '../../redux/constants/roomConstants';
 
-const AllRooms = ({ loading, error, rooms }) => {
+const AllRooms = ({ loading, error, rooms, deleteError, isDeleted }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -21,7 +22,19 @@ const AllRooms = ({ loading, error, rooms }) => {
       toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch]);
+
+    if (deleteError) {
+      toast.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      router.push('/admin/rooms');
+      dispatch({
+        type: DELETE_ROOM_RESET,
+      });
+    }
+  }, [dispatch, isDeleted, deleteError]);
 
   const setRooms = () => {
     const data = {
@@ -70,7 +83,10 @@ const AllRooms = ({ loading, error, rooms }) => {
                 </a>
               </Link>
 
-              <button className='btn btn-danger mx-2'>
+              <button
+                className='btn btn-danger mx-2'
+                onClick={() => deleteRoomHandler(room._id)}
+              >
                 <i className='fa fa-trash'></i>
               </button>
             </Fragment>
@@ -79,6 +95,10 @@ const AllRooms = ({ loading, error, rooms }) => {
       });
 
     return data;
+  };
+
+  const deleteRoomHandler = (id) => {
+    dispatch(deleteRoom(id));
   };
 
   return (
@@ -112,6 +132,8 @@ const mapStateToProps = (state) => ({
   loading: state.allRooms.loading,
   error: state.allRooms.error,
   rooms: state.allRooms.rooms,
+  deleteError: state.room.error,
+  isDeleted: state.room.isDeleted,
 });
 
 export default connect(mapStateToProps)(AllRooms);
