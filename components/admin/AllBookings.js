@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 import Loader from '../layout/Loader';
 
@@ -9,12 +10,16 @@ import { useDispatch } from 'react-redux';
 import {
   clearErrors,
   getAdminBookings,
+  deleteBooking,
 } from '../../redux/actions/bookingAction';
 import { MDBDataTable } from 'mdbreact';
 import easyinvoice from 'easyinvoice';
 
-const AllBookings = ({ bookings, error, loading }) => {
+import { DELETE_BOOKING_RESET } from '../../redux/constants/bookingConstants';
+
+const AllBookings = ({ bookings, error, loading, isDeleted, deleteError }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(getAdminBookings());
@@ -23,7 +28,19 @@ const AllBookings = ({ bookings, error, loading }) => {
       toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch]);
+
+    if (deleteError) {
+      toast.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      router.push('/admin/bookings');
+      dispatch({
+        type: DELETE_BOOKING_RESET,
+      });
+    }
+  }, [dispatch, deleteError, isDeleted]);
 
   const setBookings = () => {
     const data = {
@@ -79,7 +96,10 @@ const AllBookings = ({ bookings, error, loading }) => {
                 <i className='fa fa-download'></i>
               </button>
 
-              <button className='btn btn-danger mx-2'>
+              <button
+                className='btn btn-danger mx-2'
+                onClick={() => deleteBookingHandler(booking._id)}
+              >
                 <i className='fa fa-trash'></i>
               </button>
             </Fragment>
@@ -88,6 +108,10 @@ const AllBookings = ({ bookings, error, loading }) => {
       });
 
     return data;
+  };
+
+  const deleteBookingHandler = (id) => {
+    dispatch(deleteBooking(id));
   };
 
   const downloadInvoice = async (booking) => {
@@ -164,6 +188,8 @@ const mapStateToProps = (state) => ({
   bookings: state.bookings.bookings,
   error: state.bookings.error,
   loading: state.bookings.loading,
+  isDeleted: state.booking.isDeleted,
+  deleteError: state.booking.error,
 });
 
 export default connect(mapStateToProps)(AllBookings);

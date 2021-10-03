@@ -4,6 +4,7 @@ import ErrorHandler from '../utils/errorHandler';
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import next from 'next';
 
 const moment = extendMoment(Moment);
 // Create New Booking => /api/bookings
@@ -158,6 +159,22 @@ const allAdminBookings = catchAsyncErrors(async (req, res) => {
   });
 });
 
+// Delete booking - ADMIN => /api/admin/bookings/id
+
+const deleteBooking = catchAsyncErrors(async (req, res, next) => {
+  const booking = await Booking.findById(req.query.id);
+
+  if (!booking) {
+    return next(new ErrorHandler('Booking not found with this ID', 404));
+  }
+
+  await booking.remove();
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
 export {
   newBooking,
   checkRoomBookingsAvailability,
@@ -165,4 +182,5 @@ export {
   myBookings,
   getBookingDetails,
   allAdminBookings,
+  deleteBooking,
 };
