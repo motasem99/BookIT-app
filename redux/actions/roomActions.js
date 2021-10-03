@@ -121,9 +121,7 @@ export const newRoom = (roomData) => async (dispatch) => {
 
 export const updateRoom = (id, roomData) => async (dispatch) => {
   try {
-    dispatch({
-      type: UPDATE_ROOM_REQUEST,
-    });
+    dispatch({ type: UPDATE_ROOM_REQUEST });
 
     const config = {
       header: {

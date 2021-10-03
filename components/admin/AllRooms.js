@@ -11,8 +11,6 @@ import { clearErrors } from '../../redux/actions/bookingAction';
 import { getAdminRooms } from '../../redux/actions/roomActions';
 
 const AllRooms = ({ loading, error, rooms }) => {
-  console.log(rooms);
-
   const dispatch = useDispatch();
   const router = useRouter();
 
