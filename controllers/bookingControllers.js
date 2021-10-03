@@ -147,10 +147,22 @@ const getBookingDetails = catchAsyncErrors(async (req, res) => {
   });
 });
 
+// Get all bookings - ADMIN => /api/admin/bookings
+
+const allAdminBookings = catchAsyncErrors(async (req, res) => {
+  const bookings = await Booking.find();
+
+  res.status(200).json({
+    success: true,
+    bookings,
+  });
+});
+
 export {
   newBooking,
   checkRoomBookingsAvailability,
   checkBookedDatesOfRoom,
   myBookings,
   getBookingDetails,
+  allAdminBookings,
 };
