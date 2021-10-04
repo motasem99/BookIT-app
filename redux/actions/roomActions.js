@@ -208,8 +208,6 @@ export const checkReviewAvailability = (roomId) => async (dispatch) => {
       `/api/reviews/check_review_availability?roomId=${roomId}`
     );
 
-    console.log(data);
-
     dispatch({
       type: REVIEW_AVAILABILITY_SUCCESS,
       payload: data.isReviewAvailable,
@@ -229,8 +227,6 @@ export const getRoomReviews = (id) => async (dispatch) => {
     });
 
     const { data } = await axios.get(`/api/reviews/?id=${id}`);
-
-    console.log(data);
 
     dispatch({
       type: GET_REVIEWS_SUCCESS,
@@ -253,8 +249,6 @@ export const deleteReview = (id, roomId) => async (dispatch) => {
     const { data } = await axios.delete(
       `/api/reviews/?id=${id}&roomId=${roomId}`
     );
-
-    console.log(data);
 
     dispatch({
       type: DELETE_REVIEW_SUCCESS,
