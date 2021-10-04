@@ -68,6 +68,10 @@ const Header = ({ user, loading }) => {
                     <Link href='/admin/users'>
                       <a className='dropdown-item'>Users</a>
                     </Link>
+
+                    <Link href='/admin/reviews'>
+                      <a className='dropdown-item'>Reviews</a>
+                    </Link>
                     <hr />
                   </Fragment>
                 )}
