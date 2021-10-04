@@ -6,10 +6,15 @@ import { MDBDataTable } from 'mdbreact';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-import { getRoomReviews, clearErrors } from '../../redux/actions/roomActions';
-// import { DELETE_USER_RESET } from '../../redux/constants/userConstants';
+import {
+  getRoomReviews,
+  deleteReview,
+  clearErrors,
+} from '../../redux/actions/roomActions';
+import { DELETE_REVIEW_RESET } from '../../redux/constants/roomConstants';
+import { toast } from 'react-toastify';
 
-const RoomReviews = ({ loading, error, reviews }) => {
+const RoomReviews = ({ loading, error, reviews, isDeleted, deleteError }) => {
   const [roomId, setRoomId] = useState('');
 
   const dispatch = useDispatch();
@@ -25,18 +30,18 @@ const RoomReviews = ({ loading, error, reviews }) => {
       dispatch(getRoomReviews(roomId));
     }
 
-    // if (deleteError) {
-    //   toast.error(deleteError);
-    //   dispatch(clearErrors());
-    // }
+    if (deleteError) {
+      toast.error(deleteError);
+      dispatch(clearErrors());
+    }
 
-    // if (isDeleted) {
-    //   router.push('/admin/users');
-    //   dispatch({
-    //     type: DELETE_USER_RESET,
-    //   });
-    // }
-  }, [dispatch, error, roomId]);
+    if (isDeleted) {
+      toast.success('Review is deleted.');
+      dispatch({
+        type: DELETE_REVIEW_RESET,
+      });
+    }
+  }, [dispatch, error, roomId, isDeleted, deleteError]);
 
   const setReviews = () => {
     const data = {
@@ -78,7 +83,10 @@ const RoomReviews = ({ loading, error, reviews }) => {
           comment: review.comment,
           user: review.name,
           actions: (
-            <button className='btn btn-danger mx-2'>
+            <button
+              className='btn btn-danger mx-2'
+              onClick={() => deleteReviewHandler(review._id)}
+            >
               <i className='fa fa-trash'></i>
             </button>
           ),
@@ -88,9 +96,9 @@ const RoomReviews = ({ loading, error, reviews }) => {
     return data;
   };
 
-  //   const deleteRoomHandler = (id) => {
-  //     dispatch(deleteUser(id));
-  //   };
+  const deleteReviewHandler = (id) => {
+    dispatch(deleteReview(id, roomId));
+  };
 
   return (
     <div className='container container-fluid'>
@@ -130,8 +138,8 @@ const mapStateToProps = (state) => ({
   loading: state.roomReviews.loading,
   error: state.roomReviews.error,
   reviews: state.roomReviews.reviews,
-  //   isDeleted: state.user.isDeleted,
-  //   deleteError: state.user.error,
+  isDeleted: state.review.isDeleted,
+  deleteError: state.review.error,
 });
 
 export default connect(mapStateToProps)(RoomReviews);

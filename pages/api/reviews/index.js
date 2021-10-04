@@ -3,6 +3,7 @@ import dbConnect from '../../../config/dbConnect';
 import {
   createRoomReview,
   getRoomReviews,
+  deleteReview,
 } from '../../../controllers/roomControllers';
 import { isAuthenticatedUser } from '../../../middlewares/auth';
 import onError from '../../../middlewares/errors';
@@ -13,5 +14,6 @@ dbConnect();
 
 handler.use(isAuthenticatedUser).put(createRoomReview);
 handler.use(isAuthenticatedUser).get(getRoomReviews);
+handler.use(isAuthenticatedUser).delete(deleteReview);
 
 export default handler;
