@@ -7,10 +7,14 @@ import { MDBDataTable } from 'mdbreact';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-import { getAdminUsers, clearErrors } from '../../redux/actions/userAction';
-// import { DELETE_ROOM_RESET } from '../../redux/constants/roomConstants';
+import {
+  getAdminUsers,
+  deleteUser,
+  clearErrors,
+} from '../../redux/actions/userAction';
+import { DELETE_USER_RESET } from '../../redux/constants/userConstants';
 
-const AllUsers = ({ loading, error, users, deleteError, isDeleted }) => {
+const AllUsers = ({ loading, error, users, isDeleted, deleteError }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -22,18 +26,18 @@ const AllUsers = ({ loading, error, users, deleteError, isDeleted }) => {
       dispatch(clearErrors());
     }
 
-    // if (deleteError) {
-    //   toast.error(deleteError);
-    //   dispatch(clearErrors());
-    // }
+    if (deleteError) {
+      toast.error(deleteError);
+      dispatch(clearErrors());
+    }
 
-    // if (isDeleted) {
-    //   router.push('/admin/rooms');
-    //   dispatch({
-    //     type: DELETE_ROOM_RESET,
-    //   });
-    // }
-  }, [dispatch]);
+    if (isDeleted) {
+      router.push('/admin/users');
+      dispatch({
+        type: DELETE_USER_RESET,
+      });
+    }
+  }, [dispatch, error, isDeleted]);
 
   const setUsers = () => {
     const data = {
@@ -82,7 +86,10 @@ const AllUsers = ({ loading, error, users, deleteError, isDeleted }) => {
                 </a>
               </Link>
 
-              <button className='btn btn-danger mx-2'>
+              <button
+                className='btn btn-danger mx-2'
+                onClick={() => deleteRoomHandler(user._id)}
+              >
                 <i className='fa fa-trash'></i>
               </button>
             </Fragment>
@@ -93,9 +100,9 @@ const AllUsers = ({ loading, error, users, deleteError, isDeleted }) => {
     return data;
   };
 
-  //   const deleteRoomHandler = (id) => {
-  //     dispatch(deleteRoom(id));
-  //   };
+  const deleteRoomHandler = (id) => {
+    dispatch(deleteUser(id));
+  };
 
   return (
     <div className='container container-fluid'>
@@ -121,8 +128,8 @@ const mapStateToProps = (state) => ({
   loading: state.allRooms.loading,
   error: state.allRooms.error,
   users: state.allUsers.users,
-  //   deleteError: state.room.error,
-  //   isDeleted: state.room.isDeleted,
+  isDeleted: state.user.isDeleted,
+  deleteError: state.user.error,
 });
 
 export default connect(mapStateToProps)(AllUsers);
