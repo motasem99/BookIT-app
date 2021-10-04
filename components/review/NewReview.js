@@ -144,9 +144,7 @@ const NewReview = ({ error, success, reviewAvailable }) => {
                 className='form-control mt-3'
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-              >
-                {' '}
-              </textarea>
+              ></textarea>
 
               <button
                 className='btn my-3 float-right review-btn px-4 text-white'

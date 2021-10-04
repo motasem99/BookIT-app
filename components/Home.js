@@ -47,7 +47,8 @@ const Home = ({ rooms, error, resPerPage, roomsCount, filteredRoomsCount }) => {
           {rooms && rooms.length === 0 ? (
             <div className='alert alert-danger mt-5 w-100'>No Rooms Found.</div>
           ) : (
-            rooms && rooms.map((room) => <RoomItem key={room.id} room={room} />)
+            rooms &&
+            rooms.map((room) => <RoomItem key={room._id} room={room} />)
           )}
         </div>
       </section>
