@@ -6,7 +6,7 @@ const dbConnect = () => {
     return;
   }
 
-  const URI = process.env.DB_LOCAL_URI;
+  const URI = process.env.DB_URI;
   mongoose.connect(URI, { useUnifiedTopology: true });
 
   const connection = mongoose.connection;
