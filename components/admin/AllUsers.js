@@ -1,9 +1,14 @@
 import React, { Fragment, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Loader from '../layout/Loader';
 import { MDBDataTable } from 'mdbreact';
 
+// Next
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+// Component
+import Loader from '../layout/Loader';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 

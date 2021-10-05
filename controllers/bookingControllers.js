@@ -1,12 +1,20 @@
+// Model
 import Booking from '../models/booking';
 
-import ErrorHandler from '../utils/errorHandler';
-import catchAsyncErrors from '../middlewares/catchAsyncErrors';
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
+// Next
 import next from 'next';
 
+// Utils
+import ErrorHandler from '../utils/errorHandler';
+
+// MiddleWares
+import catchAsyncErrors from '../middlewares/catchAsyncErrors';
+
+// Moment
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
+
 // Create New Booking => /api/bookings
 
 const newBooking = catchAsyncErrors(async (req, res) => {

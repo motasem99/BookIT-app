@@ -1,7 +1,13 @@
+// Next
 import nc from 'next-connect';
+
+// Config
 import dbConnect from '../../../../config/dbConnect';
+
+// Controllers
 import { allAdminRooms } from '../../../../controllers/roomControllers';
 
+// MiddleWares
 import onError from '../../../../middlewares/errors';
 import {
   isAuthenticatedUser,

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+
+// Next
 import { useRouter } from 'next/router';
 
-import { toast } from 'react-toastify';
+//Component
 import ButtonLoader from '../layout/ButtonLoader';
-import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { registerUser, clearErrors } from '../../redux/actions/userAction';
 

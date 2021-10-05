@@ -1,8 +1,14 @@
+// Next
 import nc from 'next-connect';
-import dbConnect from '../../../config/dbConnect';
-import { stripeCheckOutSession } from '../../../controllers/paymentControllers';
-import { isAuthenticatedUser } from '../../../middlewares/auth';
 
+// Config
+import dbConnect from '../../../config/dbConnect';
+
+// Controllers
+import { stripeCheckOutSession } from '../../../controllers/paymentControllers';
+
+// MiddleWares
+import { isAuthenticatedUser } from '../../../middlewares/auth';
 import onError from '../../../middlewares/errors';
 
 const handler = nc({ onError });

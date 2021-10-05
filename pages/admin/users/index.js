@@ -1,6 +1,7 @@
-import React from 'react';
+// Next
 import { getSession } from 'next-auth/client';
 
+// Component
 import AllUsers from '../../../components/admin/AllUsers';
 import Layout from '../../../components/layout/Layout';
 

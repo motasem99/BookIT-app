@@ -1,5 +1,3 @@
-import React from 'react';
-
 const RoomFeatures = ({ room }) => {
   return (
     <div className='features mt-5'>

@@ -1,5 +1,8 @@
+// Component
 import HomeIndex from '../components/Home';
 import Layout from '../components/layout/Layout';
+
+// Redux
 import { getRooms } from '../redux/actions/roomActions';
 import { wrapper } from '../redux/store';
 

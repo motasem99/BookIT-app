@@ -1,11 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import ButtonLoader from '../layout/ButtonLoader';
 import { toast } from 'react-toastify';
 
+// Next
+import { useRouter } from 'next/router';
+
+// Component
+import ButtonLoader from '../layout/ButtonLoader';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
 import { newRoom, clearErrors } from '../../redux/actions/roomActions';
 import { NEW_ROOM_RESET } from '../../redux/constants/roomConstants';
 

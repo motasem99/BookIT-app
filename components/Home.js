@@ -1,10 +1,15 @@
 import React, { Fragment, useEffect } from 'react';
-import Link from 'next/link';
-import RoomItem from './room/RoomItem';
 import { toast } from 'react-toastify';
 import Pagination from 'react-js-pagination';
+
+// Next
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+// Component
+import RoomItem from './room/RoomItem';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearErrors } from '../redux/actions/roomActions';

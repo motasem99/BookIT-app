@@ -1,12 +1,15 @@
 import React, { Fragment, useEffect } from 'react';
-import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { MDBDataTable } from 'mdbreact';
+import easyinvoice from 'easyinvoice';
 
+// Next
+import Link from 'next/link';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearErrors } from '../../redux/actions/bookingAction';
-import { MDBDataTable } from 'mdbreact';
-import easyinvoice from 'easyinvoice';
 
 const MyBookings = ({ bookings, error }) => {
   const dispatch = useDispatch();

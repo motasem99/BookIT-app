@@ -1,5 +1,8 @@
+// Component
 import RoomDetails from '../../components/room/RoomDetails';
 import Layout from '../../components/layout/Layout';
+
+// Redux
 import { getRoomDetails } from '../../redux/actions/roomActions';
 import { wrapper } from '../../redux/store';
 

@@ -1,12 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import ButtonLoader from '../layout/ButtonLoader';
-import Loader from '../layout/Loader';
 import { toast } from 'react-toastify';
 
+// Next
+import { useRouter } from 'next/router';
+
+// Component
+import ButtonLoader from '../layout/ButtonLoader';
+import Loader from '../layout/Loader';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
 import {
   updateRoom,
   getRoomDetails,

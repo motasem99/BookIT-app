@@ -1,10 +1,17 @@
+// Next
 import nc from 'next-connect';
+
+// Config
 import dbConnect from '../../../config/dbConnect';
+
+// Controllers
 import {
   createRoomReview,
   getRoomReviews,
   deleteReview,
 } from '../../../controllers/roomControllers';
+
+// MiddleWares
 import { isAuthenticatedUser } from '../../../middlewares/auth';
 import onError from '../../../middlewares/errors';
 

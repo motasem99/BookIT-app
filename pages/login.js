@@ -1,5 +1,8 @@
+// Component
 import Login from '../components/auth/Login';
 import Layout from '../components/layout/Layout';
+
+// Next
 import { getSession } from 'next-auth/client';
 
 const loginPage = () => {

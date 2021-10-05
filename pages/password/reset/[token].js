@@ -1,4 +1,4 @@
-import React from 'react';
+// Component
 import NewPassword from '../../../components/user/NewPassword';
 import Layout from '../../../components/layout/Layout';
 

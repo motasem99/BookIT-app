@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
+
+// Redux
 
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
 import {
   getRoomReviews,
   deleteReview,

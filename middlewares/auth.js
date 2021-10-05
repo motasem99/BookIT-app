@@ -1,5 +1,9 @@
 import catchAsyncErrors from './catchAsyncErrors';
+
+// Utils
 import ErrorHandler from '../utils/errorHandler';
+
+// Next
 import { getSession } from 'next-auth/client';
 
 const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {

@@ -1,6 +1,4 @@
-import React from 'react';
-
-function Footer() {
+const Footer = () => {
   return (
     <footer className='py-1'>
       <p className='text-center mt-1'>
@@ -8,6 +6,6 @@ function Footer() {
       </p>
     </footer>
   );
-}
+};
 
 export default Footer;

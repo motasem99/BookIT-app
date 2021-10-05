@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { toast } from 'react-toastify';
 
+// Next
+import Link from 'next/link';
+import Image from 'next/image';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearErrors } from '../../redux/actions/bookingAction';

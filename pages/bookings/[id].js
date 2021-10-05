@@ -1,10 +1,12 @@
-import React from 'react';
+// Next
 import { getSession } from 'next-auth/client';
 
+// Component
 import BookingDetails from '../../components/booking/BookingDetails';
 import Layout from '../../components/layout/Layout';
-import { getBookingDetails } from '../../redux/actions/bookingAction';
 
+// Redux
+import { getBookingDetails } from '../../redux/actions/bookingAction';
 import { wrapper } from '../../redux/store';
 
 const BookingDetailsPage = () => {

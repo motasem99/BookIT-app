@@ -1,6 +1,8 @@
+// Component
 import Register from '../components/auth/Register';
 import Layout from '../components/layout/Layout';
 
+// Next
 import { getSession } from 'next-auth/client';
 
 const RegisterPage = () => {

@@ -1,10 +1,14 @@
 import React, { Fragment, useEffect, useState } from 'react';
+
+// Next
 import { useRouter } from 'next/router';
+
+// Component
 import Loader from '../layout/Loader';
 
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
 import {
   updateUser,
   clearErrors,

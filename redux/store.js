@@ -1,6 +1,11 @@
+// Redux
 import { createStore, applyMiddleware } from 'redux';
-import { HYDRATE, createWrapper } from 'next-redux-wrapper';
 import thunkMiddleware from 'redux-thunk';
+
+// Next redux wrapper
+import { HYDRATE, createWrapper } from 'next-redux-wrapper';
+
+// reducers
 import reducers from './reducers/reducers';
 
 const bindMiddleware = (middleware) => {

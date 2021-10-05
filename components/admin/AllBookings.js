@@ -1,10 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
-import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { MDBDataTable } from 'mdbreact';
+import easyinvoice from 'easyinvoice';
+
+// Next
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+// Components
 import Loader from '../layout/Loader';
 
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import {
@@ -12,8 +18,6 @@ import {
   getAdminBookings,
   deleteBooking,
 } from '../../redux/actions/bookingAction';
-import { MDBDataTable } from 'mdbreact';
-import easyinvoice from 'easyinvoice';
 
 import { DELETE_BOOKING_RESET } from '../../redux/constants/bookingConstants';
 

@@ -1,6 +1,13 @@
+// Mongoose
 import mongoose from 'mongoose';
+
+// Validator
 import validator from 'validator';
+
+// Bcrypt js
 import bcrypt from 'bcryptjs';
+
+// Crypto
 import crypto from 'crypto';
 
 const userSchema = new mongoose.Schema({

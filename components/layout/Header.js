@@ -1,9 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
+
+// Next
 import Link from 'next/link';
+import { signOut } from 'next-auth/client';
+
+// Redux
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { loadUser } from '../../redux/actions/userAction';
-import { signOut } from 'next-auth/client';
 
 const Header = ({ user, loading }) => {
   const dispatch = useDispatch();

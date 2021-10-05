@@ -1,15 +1,21 @@
+// Models
 import Room from '../models/room';
 import User from '../models/user';
 import Booking from '../models/booking';
+
+// row-body
 import getRawBody from 'raw-body';
 
+// middleWares
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
+
+// Next
 import absoluteUrl from 'next-absolute-url';
 
+// Stripe
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Generate stripe check out session => /api/checkOut_session/:roomId
-
 const stripeCheckOutSession = catchAsyncErrors(async (req, res) => {
   // Get room details
   const room = await Room.findById(req.query.roomId);

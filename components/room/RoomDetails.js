@@ -1,28 +1,36 @@
 import { Fragment, useEffect, useState } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import { Carousel } from 'react-bootstrap';
-import { useRouter } from 'next/router';
-
-import { connect } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { clearErrors } from '../../redux/actions/roomActions';
 import { toast } from 'react-toastify';
-import NewReview from '../review/NewReview';
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import RoomFeatures from './RoomFeatures';
-import axios from 'axios';
+// React Bootstrap
+import { Carousel } from 'react-bootstrap';
 
+// Next
+import Head from 'next/head';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+// Redux
+import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { clearErrors } from '../../redux/actions/roomActions';
 import {
   checkBooking,
   getBookedDates,
 } from '../../redux/actions/bookingAction';
 import { CHECK_BOOKING_REEST } from '../../redux/constants/bookingConstants';
-import getStripe from '../../utils/getStripe';
+
+// Component
+import NewReview from '../review/NewReview';
+import RoomFeatures from './RoomFeatures';
 import ListReviews from '../review/ListReviews';
+
+// axios
+import axios from 'axios';
+
+// Stripe
+import getStripe from '../../utils/getStripe';
 
 const RoomDetails = ({
   room,

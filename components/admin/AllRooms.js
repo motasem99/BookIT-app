@@ -1,13 +1,17 @@
 import React, { Fragment, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Loader from '../layout/Loader';
 import { MDBDataTable } from 'mdbreact';
 
+// Next
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+// Component
+import Loader from '../layout/Loader';
+
+// Redux
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearErrors } from '../../redux/actions/bookingAction';
-
 import { getAdminRooms, deleteRoom } from '../../redux/actions/roomActions';
 import { DELETE_ROOM_RESET } from '../../redux/constants/roomConstants';
 

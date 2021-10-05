@@ -1,8 +1,14 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+
+// Next
+import { useRouter } from 'next/router';
+
+// Component
 import ButtonLoader from '../layout/ButtonLoader';
-import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { resetPassword, clearErrors } from '../../redux/actions/userAction';
 

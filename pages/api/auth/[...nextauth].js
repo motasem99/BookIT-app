@@ -1,8 +1,11 @@
+// Next
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
+// Models
 import User from '../../../models/user';
 
+// Config
 import dbConnect from '../../../config/dbConnect';
 
 export default NextAuth({

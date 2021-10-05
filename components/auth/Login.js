@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+
+// Next
 import Link from 'next/link';
 import { signIn } from 'next-auth/client';
 
-import { toast } from 'react-toastify';
+// Component
 import ButtonLoader from '../layout/ButtonLoader';
 
 const Login = () => {

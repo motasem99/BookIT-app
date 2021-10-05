@@ -1,10 +1,17 @@
+// Next
 import nc from 'next-connect';
+
+// Config
 import dbConnect from '../../../../config/dbConnect';
+
+// Controllers
 import {
   getUserDetails,
   updateUser,
   deleteUser,
 } from '../../../../controllers/authControllers';
+
+// MiddleWares
 
 import onError from '../../../../middlewares/errors';
 import {

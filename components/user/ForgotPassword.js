@@ -1,8 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+
+// Component
 import ButtonLoader from '../layout/ButtonLoader';
-import { useDispatch, useSelector } from 'react-redux';
+
+// Redux
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { forgotPassword, clearErrors } from '../../redux/actions/userAction';
 

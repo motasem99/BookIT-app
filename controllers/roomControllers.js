@@ -1,13 +1,18 @@
+// Models
 import Room from '../models/room';
 import Booking from '../models/booking';
+
+// Cloudinary
 import cloudinary from 'cloudinary';
 
-import ErrorHandler from '../utils/errorHandler';
+// MiddleWares
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
+
+// Utils
+import ErrorHandler from '../utils/errorHandler';
 import APIFeatures from '../utils/apiFeatures';
 
 // Get All rooms => /api/rooms
-
 const allRooms = catchAsyncErrors(async (req, res) => {
   const resPerPage = 4;
   const roomsCount = await Room.countDocuments();

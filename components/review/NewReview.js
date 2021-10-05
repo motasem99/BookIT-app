@@ -1,7 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { toast } from 'react-toastify';
+
+// Next
 import { useRouter } from 'next/router';
 
-import { toast } from 'react-toastify';
+// Redux
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import {
