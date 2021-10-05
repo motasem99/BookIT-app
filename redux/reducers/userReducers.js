@@ -99,7 +99,7 @@ export const loadedUserReducers = (
 };
 
 // User reducer
-export const userReducers = (state = { userToUpdate: {} }, action) => {
+export const userReducers = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_PROFILE_REQUEST:
     case UPDATE_USER_REQUEST:
@@ -153,10 +153,7 @@ export const userReducers = (state = { userToUpdate: {} }, action) => {
 };
 
 // forgot password reducer
-export const forgotPasswordReducers = (
-  state = { userToUpdate: {} },
-  action
-) => {
+export const forgotPasswordReducers = (state = {}, action) => {
   switch (action.type) {
     case FORGOT_PASSWORD_REQUEST:
     case RESET_PASSWORD_REQUEST:

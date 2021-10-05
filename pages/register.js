@@ -22,7 +22,9 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  return {};
+  return {
+    props: {},
+  };
 }
 
 export default RegisterPage;

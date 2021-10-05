@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import ButtonLoader from '../layout/ButtonLoader';
 import Loader from '../layout/Loader';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { updateProfile, clearErrors } from '../../redux/actions/userAction';
 import { UPDATE_PROFILE_RESET } from '../../redux/constants/userConstants';
@@ -167,8 +167,8 @@ const Profile = ({ updatedUser, loading, error, isUpdated, updateLoading }) => {
 };
 
 const mapStateToProps = (state) => ({
-  updatedUser: state.auth.user,
-  loading: state.auth.loading,
+  updatedUser: state.loadedUser.user,
+  loading: state.loadedUser.loading,
   error: state.user.error,
   isUpdated: state.user.isUpdated,
   updateLoading: state.user.loading,

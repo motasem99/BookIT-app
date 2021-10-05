@@ -1,6 +1,4 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Loader from '../layout/Loader';
 import { MDBDataTable } from 'mdbreact';
 
 import { connect } from 'react-redux';
@@ -18,7 +16,6 @@ const RoomReviews = ({ loading, error, reviews, isDeleted, deleteError }) => {
   const [roomId, setRoomId] = useState('');
 
   const dispatch = useDispatch();
-  const router = useRouter();
 
   useEffect(() => {
     if (error) {
