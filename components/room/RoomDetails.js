@@ -19,7 +19,7 @@ import {
   checkBooking,
   getBookedDates,
 } from '../../redux/actions/bookingAction';
-import { CHECK_BOOKING_REEST } from '../../redux/constants/bookingConstants';
+import { CHECK_BOOKING_RESET } from '../../redux/constants/bookingConstants';
 
 // Component
 import NewReview from '../review/NewReview';
@@ -129,7 +129,7 @@ const RoomDetails = ({
 
     return () => {
       dispatch({
-        type: CHECK_BOOKING_REEST,
+        type: CHECK_BOOKING_RESET,
       });
     };
   }, [dispatch, id]);
