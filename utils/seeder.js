@@ -2,7 +2,8 @@ const Room = require('../models/room');
 const mongoose = require('mongoose');
 const rooms = require('../data/rooms.json');
 
-const URI = 'mongodb://localhost:27017/bookit';
+const URI =
+  'mongodb+srv://mutasem:mutasem274@cluster0.ssqnm.mongodb.net/bookit?retryWrites=true&w=majority';
 mongoose.connect(URI, { useUnifiedTopology: true });
 
 const connection = mongoose.connection;
